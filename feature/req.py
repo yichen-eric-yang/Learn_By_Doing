@@ -1,5 +1,6 @@
+from typing import Generator
 import requests
-import sys
+from requests.models import Response
 
 
 class request_body:
@@ -8,9 +9,9 @@ class request_body:
         self.headers = headers
         self.payload = payload
 
-    def post(self) -> str:
+    def post(self) -> Response:
         return requests.post(url=self.url, headers=self.headers, json=self.payload)
 
-    def get(self) -> str:
+    def get(self) -> Response:
         return requests.get(url=self.url, headers=self.headers)
 
