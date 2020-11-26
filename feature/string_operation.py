@@ -17,10 +17,6 @@ def revert(textInput: str) -> str:
     return outputStr.strip()
 
 
-# def main():
-#     print(revert(input))
-
-
 def revert_sentance(input: str) -> str:
     arrayStr = input.split(" ")
     arrayStr.reverse()
@@ -42,6 +38,16 @@ class string_test:
         result.equal(
             revert_sentance("I Love Living In Shanghai"), "Shanghai In Living Love I"
         )
+
+    @testcase
+    def sentance_operation_ddt(self, env, result):
+        inputArray = [
+            ("I Love Technology", "Technology Love I"),
+            ("I am a tester", "tester a am I"),
+            ("Ada is living in Shanghai", "Shanghai in living is Ada"),
+        ]
+        for i in inputArray:
+            result.equal(revert_sentance(i[0]), i[1])
 
     def gettest():
         test = MultiTest(name="String Operation Test", suites=[string_test()])

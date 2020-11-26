@@ -2,7 +2,9 @@ from testplan import test_plan
 import sys
 from testplan.report.testing.styles import Style, StyleEnum
 from string_operation import string_test
-from api_request import api_testsuite
+import api_request
+
+# from api_request import api_testsuite
 
 OUTPUT_STYLE = Style(StyleEnum.ASSERTION_DETAIL, StyleEnum.ASSERTION_DETAIL)
 
@@ -15,7 +17,7 @@ OUTPUT_STYLE = Style(StyleEnum.ASSERTION_DETAIL, StyleEnum.ASSERTION_DETAIL)
 )
 def main(plan):
     plan.add(string_test.gettest())
-    plan.add(api_testsuite.get_test())
+    plan.add(api_request.get_test())
 
 
 if __name__ == "__main__":

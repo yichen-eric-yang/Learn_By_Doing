@@ -18,9 +18,10 @@ class api_testsuite:
         runcommand.response = request_body.get(runcommand).status_code
         result.equal(runcommand.response, 200)
 
-    def get_test():
-        test = MultiTest(name="API Test", suites=[api_testsuite()])
-        return test
+
+def get_test():
+    test = MultiTest(name="API Test", suites=[api_testsuite()])
+    return test
 
 
 # if __name__ == "__main__":
