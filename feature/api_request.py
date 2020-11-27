@@ -1,6 +1,11 @@
 from req import request_body
 from testplan.testing.multitest import MultiTest, testsuite, testcase
 
+contextUrl = [
+    "https://github.com/Morgan-Stanley/testplan",
+    "https://github.com/Morgan-Stanley/pyfixmsg",
+]
+
 
 @testsuite
 class api_testsuite:
@@ -12,11 +17,10 @@ class api_testsuite:
             "X-Frame-Options": "deny",
             "X-Github-Request-Id": "621C:0ADF:AF15BF:E50690:5FBE10AF",
         }
-        runcommand = request_body(
-            url="https://github.com/Morgan-Stanley/testplan", headers=header,
-        )
-        runcommand.response = request_body.get(runcommand).status_code
-        result.equal(runcommand.response, 200)
+        for url in contextUrl:
+            runcommand = request_body(url=url, headers=header,)
+            runcommand.response = request_body.get(runcommand).status_code
+            result.equal(runcommand.response, 200)
 
 
 def get_test():
