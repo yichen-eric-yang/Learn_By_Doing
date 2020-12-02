@@ -1,0 +1,13 @@
+{
+    "python.formatting.provider": "black",
+    "python.autoComplete.extraPaths": [
+        "./feature",
+        "./FIX",
+        "./spec"
+    ],
+    "python.analysis.extraPaths": [
+        "./feature",
+        "./FIX",
+        "./spec"
+    ]
+}

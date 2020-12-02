@@ -8,6 +8,8 @@ from pyfixmsg.codecs.stringfix import Codec
 from testplan.common.utils.context import context
 from testplan.testing.multitest.driver.fix import FixServer, FixClient
 
+from ..FIX import fix_basic
+
 CURRENT_PATH = os.getcwd()
 SPEC_FILE = os.path.join(CURRENT_PATH, "spec", "FIX42.xml")
 spec = FixSpec(SPEC_FILE)
