@@ -1,7 +1,7 @@
 import os
-from unicodedata import name
+from os.path import split
 from testplan.testing.multitest import testcase, testsuite, MultiTest
-from pyfixmsg.fixmessage import FixFragment, FixMessage
+from pyfixmsg.fixmessage import FixMessage
 from pyfixmsg.reference import FixSpec
 from pyfixmsg.codecs.stringfix import Codec
 
@@ -12,7 +12,7 @@ CURRENT_PATH = os.getcwd()
 SPEC_FILE = os.path.join(CURRENT_PATH, "spec", "FIX42.xml")
 spec = FixSpec(SPEC_FILE)
 
-codec = Codec(spec=SPEC_FILE, fragment_class=FixFragment)
+codec = Codec(spec=spec)
 
 
 def fixmsg(source):
@@ -31,20 +31,25 @@ class fix_one_client_test:
         """
         docstring
         """
-        source = "8=FIX.4.2, 9=97, 35=6, 45=6, 34=14, 52=20201130-10:27:30"
+        source = {8: "FIX.4.2", 9: "97", 35: "D", 45: "6", 34: "14"}
         msg = fixmsg(source=source)
         expmsg = fixmsg(
             {
-                8: "FIX4.2",
-                35: "6",
-                34: "14",
-                49: env.client.target,
-                56: env.client.sender,
+                8: "FIX.4.2",
+                35: "D",
+                34: "2",
+                49: env.client.sender,
+                56: env.client.target,
             }
         )
         env.client.send(msg)
         received = env.server.receive()
-        result.fix.match(expmsg, received)
+        result.fix.match(
+            expmsg,
+            received,
+            include_tags=[8, 35, 34, 49, 56],
+            description="Message client sent match",
+        )
 
 
 def add_fix_test_one_client():
