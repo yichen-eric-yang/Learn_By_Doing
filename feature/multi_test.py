@@ -4,6 +4,7 @@ from testplan.report.testing.styles import Style, StyleEnum
 from string_operation import string_test
 import api_request
 import one_client_test
+import two_clients_test
 
 # from api_request import api_testsuite
 
@@ -20,6 +21,7 @@ def main(plan):
     plan.add(string_test.gettest())
     plan.add(api_request.get_test())
     plan.add(one_client_test.add_fix_test_one_client())
+    plan.add(two_clients_test.add_fix_test_two_clients())
 
 
 if __name__ == "__main__":
