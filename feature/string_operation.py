@@ -52,3 +52,20 @@ class string_test:
     def gettest():
         test = MultiTest(name="String Operation Test", suites=[string_test()])
         return test
+
+
+@testsuite
+class NegativeTest:
+    @testcase
+    def divide_by_zero(self, env, result):
+        """
+        docstring
+        """
+        try:
+            a = 10 / 0
+        except Exception as e:
+            result.true(isinstance(e, ZeroDivisionError))
+
+    def gettest():
+        test = MultiTest(name="Negative Test", suites=[NegativeTest()])
+        return test
