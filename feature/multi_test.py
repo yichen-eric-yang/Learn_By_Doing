@@ -1,7 +1,7 @@
 from testplan import test_plan
 import sys
 from testplan.report.testing.styles import Style, StyleEnum
-from string_operation import string_test
+from string_operation import string_test, NegativeTest
 import api_request
 import one_client_test
 import two_clients_test
@@ -22,6 +22,7 @@ def main(plan):
     plan.add(api_request.get_test())
     plan.add(one_client_test.add_fix_test_one_client())
     plan.add(two_clients_test.add_fix_test_two_clients())
+    plan.add(NegativeTest.gettest())
 
 
 if __name__ == "__main__":
